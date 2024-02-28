@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm";
 import { Todolist } from "./TodoList";
 import "./styles.css"
@@ -6,7 +6,16 @@ import "./styles.css"
 
 export default function App() {
   
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    //localStorage
+    const localValue = localStorage.getItem("ITEMS")
+    if (localValue == null) return []
+    return JSON.parse(localValue)
+  });
+  
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
+  }, [todos]) //actua cada vez que se modifica el 2do param
 
   function addTodo(title) {
     setTodos((current) => 
