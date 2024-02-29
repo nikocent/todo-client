@@ -58,12 +58,15 @@ ul, ol {
 
 li {
     margin-bottom: 5px;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 label {
     font-size: 1.3rem;
     margin-right: 0.5rem;
 }
+
 
 input[type="checkbox"] {
     margin: 0 10px;
